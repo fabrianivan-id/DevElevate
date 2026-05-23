@@ -2,16 +2,29 @@ const GITHUB_API = 'https://api.github.com';
 const MAX_REPOS = 10;
 
 /**
+ * Helper to construct request headers with authentication if GITHUB_TOKEN is set.
+ */
+function getHeaders() {
+  const headers = {
+    'Accept': 'application/vnd.github+json',
+    'User-Agent': 'DevElevate-App',
+  };
+
+  if (process.env.GITHUB_TOKEN) {
+    headers['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`;
+  }
+
+  return headers;
+}
+
+/**
  * Fetch a user's public repos, sorted by most recently updated.
  */
 async function fetchUserRepos(username) {
   const url = `${GITHUB_API}/users/${username}/repos?sort=updated&direction=desc&per_page=${MAX_REPOS}&type=owner`;
 
   const res = await fetch(url, {
-    headers: {
-      'Accept': 'application/vnd.github+json',
-      'User-Agent': 'DevElevate-App',
-    },
+    headers: getHeaders(),
   });
 
   if (res.status === 404) {
@@ -36,10 +49,7 @@ async function fetchRepoLanguages(owner, repo) {
   const url = `${GITHUB_API}/repos/${owner}/${repo}/languages`;
 
   const res = await fetch(url, {
-    headers: {
-      'Accept': 'application/vnd.github+json',
-      'User-Agent': 'DevElevate-App',
-    },
+    headers: getHeaders(),
   });
 
   if (!res.ok) return {};
@@ -53,10 +63,7 @@ async function fetchRepoLanguages(owner, repo) {
 export async function buildGitHubProfile(username) {
   // Fetch basic user info
   const userRes = await fetch(`${GITHUB_API}/users/${username}`, {
-    headers: {
-      'Accept': 'application/vnd.github+json',
-      'User-Agent': 'DevElevate-App',
-    },
+    headers: getHeaders(),
   });
 
   if (userRes.status === 404) {
