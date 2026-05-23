@@ -36,3 +36,5 @@ app.listen(PORT, () => {
   console.log(`\n  🚀 DevElevate API server running at http://localhost:${PORT}`);
   console.log(`  📊 Health check: http://localhost:${PORT}/api/health\n`);
 });
+
+export default app;
