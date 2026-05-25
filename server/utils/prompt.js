@@ -67,21 +67,17 @@ Perform a thorough analysis following this protocol:
 
 2. **Code Pattern & Architecture Analysis**: Based on repo structure, naming conventions, topics, and descriptions, infer the developer's engineering maturity:
    - Architecture patterns (MVC, Clean Architecture, Microservices, Monolith)
-   - DevOps maturity (CI/CD, Docker, Kubernetes, Cloud deployments)
-   - Testing practices (presence of test files, testing frameworks)
    - API design (REST, GraphQL, gRPC)
-   - Code quality signals (documentation, licensing, stars/forks)
 
-3. **Readiness Score**: Calculate a realistic 0-100 score. Be honest and constructive:
-   - 0-30: Significant gaps, major upskilling needed
-   - 31-50: Some relevant skills, but critical gaps remain
-   - 51-70: Moderate match, focused improvement needed
-   - 71-85: Strong match, minor gaps to address
-   - 86-100: Excellent match, well-qualified
+3. **Code Quality & Testing Analysis**: Assess the presence and quality of unit/integration tests, adherence to coding standards, and documentation.
 
-4. **Skill Gaps**: Identify 3-6 specific skill gaps categorized by area. Each gap should have a severity: "High" (blocker for the role), "Medium" (important but learnable), or "Low" (nice-to-have).
+4. **DevOps & Deployment**: Identify usage of containerization (Docker, Kubernetes), CI/CD pipelines (GitHub Actions, Jenkins), and Cloud service deployments (AWS, GCP, Azure).
 
-5. **Action Plans**: Provide 3-5 concrete, actionable steps. Reference the developer's ACTUAL repositories where possible. Each step should be specific enough to start immediately.
+5. **Readiness Score**: Calculate a realistic, evidence-based 0-100 score. Be honest and constructive.
+
+6. **Skill Gaps**: Identify 3-6 specific skill gaps categorized by area. Each gap should have a severity: "High" (blocker), "Medium" (important), or "Low" (nice-to-have).
+
+7. **Action Plans**: Provide 3-5 concrete, actionable steps. Reference the developer's ACTUAL repositories where possible. Each step should be specific enough to start immediately. Include estimated time and recommended resources.
 
 Respond with ONLY a valid JSON object (no markdown, no code fences, no explanatory text) in this exact structure:
 
@@ -90,7 +86,7 @@ Respond with ONLY a valid JSON object (no markdown, no code fences, no explanato
   "match_summary": "<2-3 sentence summary of the developer's strengths relative to the role>",
   "skill_gaps": [
     {
-      "category": "<e.g., Languages, Frameworks, Architecture, Cloud & DevOps, Testing, Databases>",
+      "category": "<e.g., Architecture, Cloud & DevOps, Testing>",
       "missing": "<specific skill or technology that is missing>",
       "severity": "<High|Medium|Low>"
     }
@@ -99,8 +95,11 @@ Respond with ONLY a valid JSON object (no markdown, no code fences, no explanato
     {
       "step": <number>,
       "title": "<short actionable title>",
-      "action": "<detailed, specific action the developer should take, referencing their actual repos where applicable>"
+      "action": "<detailed, specific action the developer should take, referencing their actual repos where applicable>",
+      "estimated_time": "<e.g., 2 weeks, 1 month>",
+      "recommended_resources": ["<Resource 1>", "<Resource 2>"]
     }
   ]
-}`;
+}
+`;
 }
